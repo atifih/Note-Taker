@@ -1,0 +1,23 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "An application that can be used to write, save and delete notes. This application uses an express backend.Saving and retrieving note data from a JSON file.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Atif Haque",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atifih/Note-Taker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atifih/Note-Taker/issues"
+  },
+  "homepage": "https://github.com/atifih/Note-Taker#readme",
+  "devDependencies": {}
+}

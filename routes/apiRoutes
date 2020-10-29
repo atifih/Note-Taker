@@ -1,0 +1,56 @@
+// ==================================================================================
+// LOAD DATA
+// The below routes are linked  to a series of "data" sources.
+// These data sources  hold arrays containing to information regarding notes & noteID.
+// ==================================================================================
+
+const  notes = require("../db/notes");
+const fs = require("fs");
+let  noteID = 0;
+
+// =====================================================================================================
+// ROUTING
+// =====================================================================================================
+
+module.exports = function(app) {
+  // API GET Request(s)
+  // the reqwuest is handled by the code below  when a user visits a link.
+  // For  each of the cases below, a user visiting  a link results in a response consisting of data in 
+  // JSON  format.
+  // ----------------------------------------------------------------------------------------------------
+
+  app.get("/api/notes", function(req, res) {
+    res.json(notes);
+  });
+
+  // API POST Requests
+  // Below code handles when a user submits a form and thus submits data to the server.
+  // In each of the below scenario(s), when a user submits form data (in the form of a  JSON object)
+  // , a new note is saved to  the request body and then added to the db.json file, which in turn is  
+  // returned to the the client.
+  // 
+  // ----------------------------------------------------------------------------------------------------
+
+  app.post("/api/notes", function(req, res) {
+    // Note the code here. Our "server" will respond to the requests and then return a new note to the 
+    // client.
+   
+    
+      const newNote = notes.push(req.body);
+      notes.push(newNote);  
+    }
+ 
+  });
+
+  // ---------------------------------------------------------------------------
+  // I added this below code so you could clear out the table while working with the functionality.
+  // Don"t worry about it!
+
+  app.post("/api/clear", function(req, res) {
+    // Empty out the arrays of data
+    tableData.length = 0;
+    waitListData.length = 0;
+
+    res.json({ ok: true });
+  });
+};
