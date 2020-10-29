@@ -29,7 +29,7 @@ module.exports = function(app) {
   // , a new note is saved to  the request body and then added to the db.json file, which in turn is  
   // returned to the the client.
   // 
-  // ----------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------------------------------------------------
 
   app.post("/api/notes", function(req, res) {
     // Note the code here. Our "server" will respond to the requests and then return a new note to the 
@@ -42,14 +42,16 @@ module.exports = function(app) {
  
   });
 
-  // ---------------------------------------------------------------------------
-  // I added this below code so you could clear out the table while working with the functionality.
-  // Don"t worry about it!
+  // ----------------------------------------------------------------------------------------------
+  // The purpose of the code below is to  clear out the notes while working with the functionality.
+  // ----------------------------------------------------------------------------------------------
+ 
 
   app.post("/api/clear", function(req, res) {
     // Empty out the arrays of data
-    tableData.length = 0;
-    waitListData.length = 0;
+    
+    notes.length = 0;
+    
 
     res.json({ ok: true });
   });
