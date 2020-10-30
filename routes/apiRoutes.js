@@ -4,9 +4,9 @@
 // Thes data source  holds an array containing information pertaining to saved notes.
 // ==================================================================================
 
-const  notes = require("../db/notes");
+const  notes = require("../db/db.json");
 const fs = require("fs");
-import { v1 as uuidv1 } from 'uuid';
+const uuid = require("uuid");
 
 
 // =====================================================================================================
@@ -23,21 +23,14 @@ module.exports = function(app) {
 app.get("/api/notes", function(req, res) {
 res.json(notes);
   });
+}
 
   // API POST Requests
   // Below code handles when a user submits a form and thus submits data to the server.
   // In each of the below scenario(s), when a user submits form data (in the form of a  JSON object)
-<<<<<<< HEAD
   // , a new note is saved to  the request body and then added to the db.json file along with an 
   // associated ID.
- 
- . // ----------------------------------------------------------------------------------------------------
-=======
-  // , a new note is saved to  the request body and then added to the db.json file, which in turn is  
-  // returned to the the client.
-  // 
-  // ------------------------------------------------------------------------------------------------
->>>>>>> 22ed2674ac5d43923e21d9a3e8d45c595b7cd8fe
+  // ----------------------------------------------------------------------------------------------------
 
   app.post("/api/notes", (req, res) => {
     // Note the code here. Our "server" will respond to the requests and then save a new note to the 
@@ -46,36 +39,35 @@ res.json(notes);
     const newNote = {
         title: req.body.title,
         text:  req.body.text,
-        id:     uuidv1();
+        id:     uuidv1(),
     }
     notes.push(newNote);  
-    }
-<<<<<<< HEAD
+    });
 
-    fs.writeFileSync("./db/db.json", JSON.stringify(notes), err => 
-      (err) ? throw err : res.json(true);
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes),  (err) => {
+      if (err){
+        throw err;
+      }
+    else {
+        res.json(true);
+      }
+    });
+        
     
     // DELETE /api/notes/:id - A 'delete note' request  will delete a note frome the database  based on 
     // ID. All saved  notes are then  rewritten to the db.json file.
-=======
- 
-  });
-
-  // ----------------------------------------------------------------------------------------------
-  // The purpose of the code below is to  clear out the notes while working with the functionality.
-  // ----------------------------------------------------------------------------------------------
- 
-
-  app.post("/api/clear", function(req, res) {
-    // Empty out the arrays of data
-    
-    notes.length = 0;
-    
->>>>>>> 22ed2674ac5d43923e21d9a3e8d45c595b7cd8fe
 
     app.delete("/api/notes/:id", (req, res)  => {
-    const savedNotes = Notes.filter(word => id!= req.id);
+    const savedNotes = notes.filter (id != req.id);
     
-    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes), err => {
-    (err) ? throw : res.json({ deletion: "success" });
-    }
+    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes), err => { 
+      if (err) {
+        throw err;
+      }
+      res.json({ delete : "success" });
+    });
+  })
+   
+   
+
+  
