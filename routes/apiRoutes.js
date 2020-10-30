@@ -6,21 +6,19 @@
 
 const  notes = require("../db/db.json");
 const fs = require("fs");
-const uuid = require("uuid");
 
 
 // =====================================================================================================
 // ROUTING
 // =====================================================================================================
-
-module.exports = function(app) {
+module.exports = (app) => {
   // API GET Request(s)
   // the reqwuest is handled by the code below  when a user visits a link.
   // For  each of the cases below, a user visiting  a link results in a response in the form of a note 
   // (consisting of data in JSON  format.
   // ----------------------------------------------------------------------------------------------------
 
-app.get("/api/notes", function(req, res) {
+app.get("/api/notes", (req, res) => {
 res.json(notes);
   });
 
@@ -35,11 +33,11 @@ res.json(notes);
   app.post("/api/notes", (req, res) => {
     // Note the code here. Our "server" will respond to the requests and then save a new note to the 
     // database.
-   
+   import { v1 as uuidv1 } from 'uuid';
     const newNote = {
         title: req.body.title,
         text:  req.body.text,
-        id:     uuidv1(),
+        id:     uuidv1()
     }
     notes.push(newNote);  
     });
@@ -48,9 +46,8 @@ res.json(notes);
       if (err){
         throw err;
       }
-    else {
-        res.json(true);
-      }
+      res.json(true);
+      
     });
         
     
@@ -58,9 +55,10 @@ res.json(notes);
     // ID. All saved  notes are then  rewritten to the db.json file.
 
     app.delete("/api/notes/:id", (req, res)  => {
-    const savedNotes = notes.filter (id != req.id);
+    const id = req.params.id;
+    const savedNotes = notes.filter (note => id !== req.id);
     
-    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes), err => { 
+    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes), (err) => { 
       if (err) {
         throw err;
       }

@@ -2,6 +2,7 @@
   "name": "note-taker",
   "version": "1.0.0",
   "description": "An application that can be used to write, save and delete notes. This application uses an express backend.Saving and retrieving note data from a JSON file.",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +10,7 @@
   "author": "Atif Haque",
   "license": "MIT",
   "dependencies": {
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "uuid": "^8.3.1"
   },
