@@ -23,7 +23,7 @@ module.exports = function(app) {
 app.get("/api/notes", function(req, res) {
 res.json(notes);
   });
-}
+
 
   // API POST Requests
   // Below code handles when a user submits a form and thus submits data to the server.
@@ -67,7 +67,7 @@ res.json(notes);
       res.json({ delete : "success" });
     });
   })
-   
+}
    
 
   

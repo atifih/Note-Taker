@@ -3,7 +3,7 @@
 // Series of npm packages that we will use to give our server useful functionality
 // ==============================================================================
 const express = require("express");
-const router = express.Router();
+
 // ==============================================================================
 // EXPRESS CONFIGURATION
 // This sets up the basic properties for our express server
@@ -30,5 +30,6 @@ htmlRoutes = require("./routes/htmlRoutes.js")(app);
 // The below code effectively "starts" our server
 // =============================================================================
 app.listen(PORT, function() {
+    
 console.log("App listening on PORT: " + PORT);
 })
