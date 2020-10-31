@@ -57,8 +57,8 @@ res.json(notes);
 
     app.delete("/api/notes/:id", (req, res)  => {
     const id = req.params.id;
-    const savedNotes = notes.filter (note => id !== req.id);
-    
+    const savedNotes = notes.filter ((note) => note.id != id );
+  
     fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes), (err) => { 
       if (err) {
         throw err;
