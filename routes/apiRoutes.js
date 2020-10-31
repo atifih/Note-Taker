@@ -41,7 +41,7 @@ res.json(notes);
     }
     notes.push(newNote);  
   
-    fs.writeFileSync("../db/db.json", JSON.stringify(notes),  err => {
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes),  err => {
     if (err){
       throw err;
     }
@@ -56,20 +56,25 @@ res.json(notes);
 
     app.delete("/api/notes/:id", (req, res)  => {
         const id = req.params.id;
-        fs.readFileSync('../db/db.json', err => {
-          if (err) {
-          throw err;
-          }
-           res.json(true);
-        });
-    
+        console.log("DEBUG: id" + id);
+
+        // Read the database.
+
+        fs.readFileSync('../db/db.json', "utf-8");
+      // Delete the note and rewrite all saved notes.
+
+        // debug statements. 
+      console.log("DEBUG: note.id is: " + note.id);
+      console.log("DEBUG: req.params.id is" + id);
        const savedNotes = notes.filter (note => note.id !== id);
    
-    // debug statements.
-
-    console.log("req.params.id is" + id);
-    console.log("note.id is: " + note.id);
   
+
+   
+    
+  
+    // Write the list of saved notes to the database.
+    
       fs.writeFileSync("../db/db.json", JSON.stringify(savedNotes), err => { 
       if (err) {
         throw err;
@@ -77,7 +82,7 @@ res.json(notes);
       res.json(true);
       });
     });
-}
+  }
 
 
 
