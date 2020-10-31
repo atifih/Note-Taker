@@ -20,7 +20,7 @@ module.exports = (app) => {
 
 app.get("/api/notes", (req, res) => {
 res.json(notes);
-  });
+});
 
 
   // API POST Requests
@@ -41,32 +41,47 @@ res.json(notes);
     }
     notes.push(newNote);  
   
-    fs.writeFileSync("./db/db.json", JSON.stringify(notes),  (err) => {
-      if (err){
-        throw err;
-      }
-      res.json(true);
-
+    fs.writeFileSync("../db/db.json", JSON.stringify(notes),  err => {
+    if (err){
+      throw err;
+    }
+    res.json(true);
     });
       
-    });
-        
+  });
+
     
     // DELETE /api/notes/:id - A 'delete note' request  will delete a note frome the database  based on 
     // ID. All saved  notes are then  rewritten to the db.json file.
 
     app.delete("/api/notes/:id", (req, res)  => {
-    const id = req.params.id;
-    const savedNotes = notes.filter ((note) => note.id != id );
+        const id = req.params.id;
+        fs.readFileSync('../db/db.json', err => {
+          if (err) {
+          throw err;
+          }
+           res.json(true);
+        });
+    
+       const savedNotes = notes.filter (note => note.id !== id);
+   
+    // debug statements.
+
+    console.log("req.params.id is" + id);
+    console.log("note.id is: " + note.id);
   
-    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes), (err) => { 
+      fs.writeFileSync("../db/db.json", JSON.stringify(savedNotes), err => { 
       if (err) {
         throw err;
       }
-      res.json({ delete : "success" });
+      res.json(true);
+      });
     });
-  })
 }
-   
 
-  
+
+
+
+
+
+
