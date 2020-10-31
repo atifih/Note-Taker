@@ -6,7 +6,7 @@
 
 const  notes = require("../db/db.json");
 const fs = require("fs");
-
+const { v4: uuidv4 } = require('uuid');
 
 // =====================================================================================================
 // ROUTING
@@ -33,20 +33,21 @@ res.json(notes);
   app.post("/api/notes", (req, res) => {
     // Note the code here. Our "server" will respond to the requests and then save a new note to the 
     // database.
-   import { v1 as uuidv1 } from 'uuid';
-    const newNote = {
+
+    const newNote = { 
         title: req.body.title,
         text:  req.body.text,
-        id:     uuidv1()
+        id:     uuidv4()
     }
     notes.push(newNote);  
-    });
-
+  
     fs.writeFileSync("./db/db.json", JSON.stringify(notes),  (err) => {
       if (err){
         throw err;
       }
       res.json(true);
+
+    });
       
     });
         
