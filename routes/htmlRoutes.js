@@ -10,7 +10,7 @@ const cwd = process.cwd();
 // ROUTING
 // ===============================================================================
 
-module.exports = function(app) {
+module.exports = app => {
   // HTML GET Requests.
   // The following code handles when users "visit" a page.
   // The cases below result in  the user being  shown a page of HTML content.
