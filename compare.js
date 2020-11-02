@@ -4,14 +4,11 @@
 // Thes data source  holds an array containing information pertaining to saved notes.
 // ==================================================================================
 
-
+const  notes = require("../db/db.json");
 const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');
-const process = require("process");
-const cwd = process.cwd();
-// DB filename
-const dbPath = path.join(cwd, "/db/db.json");
+const db = path.join(__dirname, "../db/db.json");
 
 // =====================================================================================================
 // ROUTING
@@ -24,12 +21,7 @@ module.exports = (app) => {
   // ----------------------------------------------------------------------------------------------------
 
 app.get("/api/notes", (req, res) => {
-
-fs.readFile(dbPath, "utf-8", (err, data) => {
-    if (err) throw err;
-    const  dataJ = JSON.parse(data);
-    return res.json(dataJ);
-  });
+res.json(notes);
 });
 
 
@@ -44,21 +36,21 @@ fs.readFile(dbPath, "utf-8", (err, data) => {
     // Note the code here. Our "server" will respond to the requests and then save a new note to the 
     // database.
 
-    const note = req.body; 
-    const data = fs.readFileSync(dbPath, "utf-8");
-    const dataJ = JSON.parse(data);
-    note.id = uuidv4();
-    dataJ.push(note);
+    const newNote = { 
+        title: req.body.title,
+        text:  req.body.text,
+        id:     uuidv4()
+    }
+    notes.push(newNote);  
   
-    fs.writeFileSync(dbPath, JSON.stringify(dataJ),  err => {
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes),  err => {
     if (err){
       throw err;
-      return res.json(false);
     }
-    return res.json(true);
+    res.json(true);
     });
       
-  })
+  });
 
     
     // DELETE /api/notes/:id - A 'delete note' request  will delete a note frome the database  based on 
@@ -66,21 +58,43 @@ fs.readFile(dbPath, "utf-8", (err, data) => {
 
      app.delete("/api/notes/:id", (req, res)  => {
       const id = req.params.id;
-      let currentNotes  =  JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+      let currentNotes =  JSON.parse(fs.readFileSync(db, "utf-8"));
+      console.log("before filter",currentNotes);
+      const filteredNotes = currentNotes.filter(note => note.id !== id);
+      console.log("after filter",filteredNotes);
       
-      const filteredNotes = currentNotes.filter( dataJ => dataJ.id !== id);
-     
-      
-      fs.writeFileSync(dbPath, JSON.stringify(filteredNotes), err => { 
+      fs.writeFileSync(db, JSON.stringify(filteredNotes), err => { 
       if (err) {
         throw err;
       }
-      return res.json(true);
+      res.json(true);
       });
-       // if ID is not found
-    return res.status(404).json(false); 
     });
+
+    // app.delete("/api/notes/:id", (req, res)  => {
+    //     const id = req.params.id;
+    //     console.log("DEBUG: id" + id);
+
+    //     // Read the database.
+
+    //     fs.readFileSync('../db/db.json', "utf-8");
+    //   // Delete the note and rewrite all saved notes.
+
+    //     // debug statements. 
+    //   console.log("DEBUG: note.id is: " + note.id);
+    //   console.log("DEBUG: req.params.id is" + id);
+    //    const savedNotes = notes.filter (note => note.id !== id);
     
+  
+    // // Write the list of saved notes to the database.
+    
+    //   fs.writeFileSync("../db/db.json", JSON.stringify(savedNotes), err => { 
+    //   if (err) {
+    //     throw err;
+    //   }
+    //   res.json(true);
+    //   });
+    // });
   }
 
 

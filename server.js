@@ -3,7 +3,10 @@
 // Series of npm packages that we will use to give our server useful functionality
 // ==============================================================================
 const  express  = require("express");
-
+const path = require("path");
+const fs = require("fs");
+const process = require("process");
+const cwd = process.cwd();
 // ==============================================================================
 // EXPRESS CONFIGURATION
 // This sets up the basic properties for our express server
@@ -16,6 +19,8 @@ const  PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+app.use("/assets", express.static(path.join( cwd , '/public/assets')));
+
 
 // ================================================================================
 // ROUTER
