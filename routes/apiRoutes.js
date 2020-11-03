@@ -15,6 +15,9 @@ const util = require('util');
 // DB filename
 const dbPath = path.join(cwd, "/db/db.json");
 
+// DB file.
+const  notes = require(dbPath);
+
 // =====================================================================================================
 // ROUTING
 // =====================================================================================================
@@ -27,12 +30,11 @@ module.exports = app => {
 
 app.get("/api/notes", async(req, res) => {
   try{
-    const readFileAsync = util.promisify(fs.readFile);
-    const data = await readFileAsync(dbPath, "utf8");
-    console.log((data));
-    const  dataJ = JSON.parse(data);
-    console.log(dataJ);
-    return res.json(dataJ);
+     const readFileAsync = util.promisify(fs.readFile);
+    const rawNotes = await readFileAsync(dbPath, "utf8");
+    console.log((rawNotes));
+    const  currentNotes = JSON.parse(rawNotes);
+    return res.json(currentNotes);
   } catch (error){
     console.log(error)
   }
@@ -54,20 +56,20 @@ app.get("/api/notes", async(req, res) => {
     const note = req.body; 
     try {
       const readFileAsync = util.promisify(fs.readFile);
-      const data = await readFileAsync(dbPath, "utf8");
-      const  dataJ = JSON.parse(data);
+      const rawNotes = await readFileAsync(dbPath, "utf8");
+      const  currentNotes = JSON.parse(rawNotes);
     }catch (error){
       console.log(error)
     }
   
     note.id = uuidv4();
-    dataJ.push(note);
+    notes.push(note);
     try{
-      await fs.writeFileAsync(dbPath, JSON.stringify(dataJ));
+      const writeFileAsync = util.promisify(fs.writeFile);
+      await writeFileAsync(dbPath, JSON.stringify(notes));
     }catch (error){
         console.log(error)
     }
-    
     return res.json(true);
   });
       
@@ -78,16 +80,24 @@ app.get("/api/notes", async(req, res) => {
     // ID. All saved  notes are then  rewritten to the db.json file.
 
      app.delete("/api/notes/:id", async(req, res)  => {
+      const note = req.body;  
       const id = req.params.id;
      try {
-       const readFileAsync = util.promisify(fs.readFile);
-      const  data = await readFileAsync(dbPath, "utf8");
-      const  dataJ = JSON.parse(data);
-      return res.json(dataJ);
+      const readFileAsync = util.promisify(fs.readFile);
+      const  rawNotes = await readFileAsync(dbPath, "utf8");
+      const currentNotes =  JSON.parse(rawNotes);
+      console.log(currentNotes);
+      const filteredNotes = currentNotes.filter(note => note.id !== id);
+      const writeFileAsync = util.promisify(fs.writeFile);
+      writeFileAsync(dbPath, JSON.stringify(filteredNotes));
+      return res.json(true);
     }catch (error){
       console.log(error)
     };
-      
+  })
+}
+    
+    /* 
     const filteredNotes = data.filter( dataJ => dataJ.id !== id);
     console.log("Filtered notes: " + filteredNotes);
      
@@ -100,6 +110,7 @@ app.get("/api/notes", async(req, res) => {
     return res.json(true);
     });
     }
+    */ 
     
   
 
