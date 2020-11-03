@@ -25,13 +25,28 @@ The application may be invoked from the command line like so:
 ## Usage
   
 ![](images/image1.png)
-![](images/image2.png)
-![](images/image3.png)
-![](images/image4.png)
-![](images/image5.png)
-![](images/image6.png)
-![](images/image7.png)
+The application is started from the CLI as shown here. The applicattion will advise the user that the server has started and is listening at a specific port.
 
+![](images/image2.png)
+The end-user will then be greeting to a 'Get Started' page.
+
+
+
+![](images/image3.png)
+The end-user is presented with the screen shown here where they will create a note and subsequently save it when the 'save icon' appears.
+
+![](images/image4.png)
+The note is saved as shown here on the left hand pane.
+
+![](images/image5.png)
+
+The note has been created as shown on the left hand pane.
+
+![](images/image6.png)
+The end-user can select a saved note from the left hand pane and click the 'delete icon'.
+
+![](images/image7.png)
+After deleting all notes, the user is presented with the 'original page' as illustrated here.
 
 ## License
 MIT.
