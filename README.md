@@ -38,7 +38,7 @@ The end-user is presented with the screen shown here where they will create a no
 ![](images/image4.png)
 The note is saved as shown here on the left hand pane.
 
-![](images/image5.png
+![](images/image5.png)
 
 The note has been created as shown on the left hand pane.
 
