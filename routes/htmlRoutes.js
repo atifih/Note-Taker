@@ -16,16 +16,16 @@ module.exports = app => {
   // The cases below result in  the user being  shown a page of HTML content.
   // ---------------------------------------------------------------------------
   
-  app.get("/index", function(req, res) {
+  app.get("/index", (req, res) => {
     res.sendFile(path.join(cwd, "/public/index.html"));
   });
 
-  app.get("/notes", function(req, res) {
+  app.get("/notes", (req, res) => {
     res.sendFile(path.join(cwd, "/public/notes.html"));
   });
 
   // If no matching route is found, then the  default route is set to index.
-  app.get("*", function(req, res) {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(cwd, "/public/assets/index.html"));
   });
 };
