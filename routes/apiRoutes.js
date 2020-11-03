@@ -7,7 +7,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid'); // Generates a uniquie id.
 const process = require("process");
 const cwd = process.cwd();
 const util = require('util');
@@ -97,20 +97,7 @@ app.get("/api/notes", async(req, res) => {
   })
 }
     
-    /* 
-    const filteredNotes = data.filter( dataJ => dataJ.id !== id);
-    console.log("Filtered notes: " + filteredNotes);
-     
-     const writeFileAsync = util.promisify(fs.writeFile); 
-    try{
-      writeFileAsync(dbPath, JSON.stringify(filteredNotes));
-    }catch (error){
-      console.log(error);
-    }
-    return res.json(true);
-    });
-    }
-    */ 
+
     
   
 

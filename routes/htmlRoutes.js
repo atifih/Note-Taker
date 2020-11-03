@@ -22,10 +22,7 @@ module.exports = app => {
 
   app.get("/notes", (req, res) => {
     res.sendFile(path.join(cwd, "/public/notes.html"));
-  });
-
-  // If no matching route is found, then the  default route is set to index.
-  app.get("*", (req, res) => {
     res.sendFile(path.join(cwd, "/public/assets/index.html"));
   });
-};
+}
+
