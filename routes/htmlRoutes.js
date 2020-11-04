@@ -22,7 +22,5 @@ module.exports = app => {
 
   app.get("/notes", (req, res) => {
     res.sendFile(path.join(cwd, "/public/notes.html"));
-    res.sendFile(path.join(cwd, "/public/assets/index.html"));
-  });
+})
 }
-
