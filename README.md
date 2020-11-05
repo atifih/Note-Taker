@@ -25,7 +25,7 @@ The application may be invoked from the command line like so:
 ## Usage
   
 ![](images/image1.png)
-Here, the application is started from te CLI as depicted  here. The applicattion will advise the user that the server has started and is listening at a specific port for requests.
+Here, the application is started from te CLI as depicted  here. The application will advise the user that the server has started and is listening at a specific port for client requests.
 
 ![](images/image2.png), save
 The end-user will then be greeting to a 'Get Started' page.
@@ -55,9 +55,9 @@ MIT.
  
 ## Contributing
 All pull requests are allowed/encouraged. For developers looking to make profound changes to this project, kindly open an issue detailing any proposed changes to be made so that a discussion may ensue.
- 
+ .
 ## Tests
-Currently there are no  tests within the repository.
+Currently there are no  tests provided within the repository, this  is subject to change as more thorough or formal testing of this app ensues sometime in the future.
 
 
 ## Questions
