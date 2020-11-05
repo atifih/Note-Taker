@@ -24,26 +24,28 @@ The application may be invoked from the command line like so:
 
 ## Usage
   
-![](images/image1.png)ere 
-The application is started from the CLI as shown here. The applicattion will advise the user that the server has started and is listening at a specific port.
+![](images/image1.png)
+Here, the application is started from te CLI as depicted  here. The applicattion will advise the user that the server has started and is listening at a specific port for requests.
 
 ![](images/image2.png), save
 The end-user will then be greeting to a 'Get Started' page.
 
+![](images/image3.png)
 
+The end-user will then click the 'get started' button to officially 'enter the app', where notes can be created, saved & deleted from the database.
 
-![](images/image3.png)The end-user is presented with the screen shown here where they will create a note and subsequently save it when the 'save icon' appears.
-THe end-user will then click the 'get started' button to officially 'enter the app, where notes can be created, saved & deleted from the database.
 ![](images/image4.png)
 
-The created note is saved and displayed  as shown here on the left hand pane.
+The end-user is presented with the screen shown here where they will create a note which will then be  subsequently saved it once  the 'save icon' is clicked (from the left hand pane).
+
+The created note is saved and displayed  as shown here.
 
 ![](images/image5.png)
 
-The end-user can select a saved note from the left hand pane and click the 'delete icon'.
+For note deletion,the end-user can select a saved note from the left hand pane and click the 'delete icon'.
 
 ![](images/image6.png)
-The list of saved notes is re-displayed in the application window.
+The list of currently  saved notes is re-displayed in the application window.
 
 ![](images/image7.png)
 After deleting all notes, the user is presented with the 'original/home page' as illustrated here.
