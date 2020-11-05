@@ -27,12 +27,13 @@ The application may be invoked from the command line like so:
 ![](images/image1.png)
 Here, the application is started from te CLI as depicted  here. The application will advise the user that the server has started and is listening at a specific port for client requests.
 
-![](images/image2.png), save
+![](images/image2.png)
+
 The end-user will then be greeting to a 'Get Started' page.
 
 ![](images/image3.png)
 
-The end-user will then click the 'get started' button to officially 'enter the app', where notes can be created, saved & deleted from the database.
+The end-user proceeds with this application by clicking  the 'get started' button to officially 'enter the app', where notes can be created, saved & deleted from the database.
 
 ![](images/image4.png)
 
