@@ -43,7 +43,7 @@ The created note is saved and displayed  as shown here.
 
 ![](images/image5.png)
 
-For note deletion,the end-user can select a saved note from the left hand pane and click the 'delete icon'.
+For note deletion, the end-user can select a saved note from the left hand pane and click the 'delete icon'.
 
 ![](images/image6.png)
 The list of currently  saved notes is re-displayed in the application window.
